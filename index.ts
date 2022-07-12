@@ -1,9 +1,9 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
 import cors from "cors"
 import { AdminRoute,VendorRoute } from "./routes";
 import mongoose, { ConnectOptions } from "mongoose";
-dotenv.config();
 import { MONGO_URI } from "./config";
 
 const app = express();
