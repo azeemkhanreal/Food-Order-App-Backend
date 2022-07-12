@@ -105,6 +105,4 @@ export const GetFoods = async (req:Request,res:Response)=>{
             return res.status(200).json(foods);
         }
         return res.status(404).json({message:"Foods not found"});
-    }
-    return res.status(401).json({message:"Food information not found"})
 }
