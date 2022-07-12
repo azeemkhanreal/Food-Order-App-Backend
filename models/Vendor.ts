@@ -3,15 +3,15 @@ import mongoose, {Schema,Document,Model} from "mongoose";
 interface VendorDoc extends Document {
     name:string,
     ownerName:string,
-    foodType:string,
+    foodType:[string],
     pincode:string,
     address:string,
     phone:string,
     email:string,
     password:string,
     salt:string,
-    serviceAvailable:string,
-    coverImage:string,
+    serviceAvailable:boolean,
+    coverImage:[string],
     rating:number,
     // foods:any
 }
@@ -19,7 +19,7 @@ interface VendorDoc extends Document {
 const VendorSchema = new Schema({
     name:{type:String,required:true},
     ownerName:{type:String,required:true},
-    foodType:{type:String},
+    foodType:{type:[String]},
     pincode:{type:String,required:true},
     address:{type:String},
     phone:{type:String,required:true},
