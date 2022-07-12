@@ -25,7 +25,8 @@ export const createVendor = async (req: Request, res: Response) => {
     phone,
     rating:0,
     serviceAvailable:false,
-    coverImage:[]
+    coverImage:[],
+    foods:[]
    })
    return res.status(201).json(createVendor);
 }
