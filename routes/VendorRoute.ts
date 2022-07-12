@@ -9,6 +9,14 @@ router.patch("/profile",UpdateVendorProfile)
 router.patch("/profile",UpdateVendorService)
 
 
+router.use(Authenticate)
+
+router.route("/profile")
+.get(GetVendorProfile)
+.patch(UpdateVendorProfile)
+
+router.patch("/service",UpdateVendorService)
+
 router.get("/",(req:Request,res:Response,next:NextFunction)=>{
     res.json({message:"Hello from Vendor"});
 })
