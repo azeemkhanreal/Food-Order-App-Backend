@@ -1,7 +1,9 @@
 import {Request,Response} from "express";
 import { VendorEditInput, VendorLoginInput } from "../dto";
+import { CreateFoodInputs } from "../dto/food.dto";
 import { Vendor } from "../models";
 import { GenerateSignature, ValidatePassword } from "../utils";
+import {Food} from "../models/Food";
 
 export const VendorLogin = async (req:Request,res:Response)=>{
     const {email,password} = <VendorLoginInput>req.body;
@@ -69,4 +71,36 @@ export const UpdateVendorService = async(req:Request,res:Response)=>{
             return res.status(201).json(saveVendor);
         }
     }
+}
+
+export const AddFood = async (req:Request,res:Response)=>{
+    const user = req.user;
+    if(user){
+        const {name,description,category,foodType,readyTime,price} =<CreateFoodInputs> req.body;
+        const vendor = await Vendor.findById(user._id);
+        if(vendor!==null){
+            const createFood = await Food.create({
+                vendorId: vendor._id,
+                name,
+                description,
+                category,
+                images:["dsjd"],
+                foodType,
+                readyTime,
+                price,
+                rating:0
+            });
+            vendor.foods.push(createFood);
+            const result = await vendor.save();
+            return res.status(201).json(result);
+        }
+        return res.status(401).json({message:"Something went wrong with add food"})
+     }}
+
+export const GetFoods = async (req:Request,res:Response)=>{
+    const user = req.user;
+    if(user){
+        
+    }
+    return res.status(401).json({message:"Food information not found"})
 }
