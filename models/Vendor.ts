@@ -31,7 +31,7 @@ const VendorSchema = new Schema({
     rating:{type:Number},
     foods:[{
         type:mongoose.SchemaTypes.ObjectId,
-        ref:'food'
+        ref:'Food'
     }],
 },{
     toJSON:{
