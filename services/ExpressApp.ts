@@ -2,9 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import express, { Application } from "express";
 import cors from "cors"
-import { AdminRoute,VendorRoute } from "../routes";
+import { AdminRoute,VendorRoute,ShoppingRoute } from "../routes";
 import path from "path";
-
 
 export default async (app:Application)=>{
     app.use(cors());
@@ -14,5 +13,6 @@ export default async (app:Application)=>{
     
     app.use("/admin", AdminRoute);
     app.use("/vendor", VendorRoute);
+    app.use("/shopping",ShoppingRoute);
     return app;
 }
